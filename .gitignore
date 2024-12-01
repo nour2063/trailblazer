@@ -71,5 +71,9 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
-# General
+# Jetbrains
 /.idea/
+
+# Unity temp files
+.utmp/
+mono_crash.0.0.json
