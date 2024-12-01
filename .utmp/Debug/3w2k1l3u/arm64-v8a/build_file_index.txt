@@ -1,2 +1,0 @@
-/Users/noureldineelfangary/projects/unity/trailblazer/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/src/main/cpp/CMakeLists.txt
-/Users/noureldineelfangary/projects/unity/trailblazer/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/src/main/cpp/GameActivity/CMakeLists.txt
