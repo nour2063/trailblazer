@@ -1,0 +1,5 @@
+/Users/noureldineelfangary/projects/unity/trailblazer/.utmp/Debug/3w2k1l3u/arm64-v8a/CMakeFiles/edit_cache.dir
+/Users/noureldineelfangary/projects/unity/trailblazer/.utmp/Debug/3w2k1l3u/arm64-v8a/CMakeFiles/rebuild_cache.dir
+/Users/noureldineelfangary/projects/unity/trailblazer/.utmp/Debug/3w2k1l3u/arm64-v8a/GameActivity/CMakeFiles/game.dir
+/Users/noureldineelfangary/projects/unity/trailblazer/.utmp/Debug/3w2k1l3u/arm64-v8a/GameActivity/CMakeFiles/edit_cache.dir
+/Users/noureldineelfangary/projects/unity/trailblazer/.utmp/Debug/3w2k1l3u/arm64-v8a/GameActivity/CMakeFiles/rebuild_cache.dir
