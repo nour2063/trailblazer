@@ -17,15 +17,32 @@ public class DrawTrail : MonoBehaviour
     private void Start()
     {
         _line = GetComponent<LineRenderer>();
+        _collider = gameObject.AddComponent<MeshCollider>();
+        _mesh = new Mesh();
+        
+        StartDrawTrail();
+    }
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!other.CompareTag("Player"))
+        {
+            return;
+        }
+        
+        _positionQueue.Clear();
+        CancelInvoke();
+        StartDrawTrail();
+    }
+    
+    private void StartDrawTrail()
+    {
         _line.positionCount = 1;
         
         _line.SetPosition(0, new Vector3(player.transform.position.x, trailHeight, player.transform.position.z));
         
         InvokeRepeating(nameof(QueuePosition), 0f, segmentDuration);
         InvokeRepeating(nameof(AddSegment), offset, segmentDuration);
-        
-        _collider = gameObject.AddComponent<MeshCollider>();
-        _mesh = new Mesh();
     }
 
     private void AddSegment()
@@ -45,17 +62,5 @@ public class DrawTrail : MonoBehaviour
     private void QueuePosition()
     {
         _positionQueue.Enqueue(new Vector3(player.transform.position.x, trailHeight, player.transform.position.z));
-    }
-    
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!other.CompareTag("Player"))
-        {
-            return;
-        }
-        
-        _positionQueue.Clear();
-        _line.positionCount = 1;
-        _line.SetPosition(0, new Vector3(player.transform.position.x, trailHeight, player.transform.position.z));
     }
 }
