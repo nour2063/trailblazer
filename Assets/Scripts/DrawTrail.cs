@@ -5,11 +5,13 @@ using UnityEngine;
 public class DrawTrail : MonoBehaviour
 {
     public GameObject player;
+    public GameObject trace;
     public float trailHeight = 0.1f;
     public float segmentDuration = 0.25f;
     public float offset = 2f;
 
     private LineRenderer _line;
+    private LineRenderer _trace;
     private readonly Queue<Vector3> _positionQueue = new Queue<Vector3>();
     private MeshCollider _collider;
     private Mesh _mesh;
@@ -17,6 +19,7 @@ public class DrawTrail : MonoBehaviour
     private void Start()
     {
         _line = GetComponent<LineRenderer>();
+        _trace = trace.GetComponent<LineRenderer>();
         _collider = gameObject.AddComponent<MeshCollider>();
         _mesh = new Mesh();
         
@@ -38,8 +41,10 @@ public class DrawTrail : MonoBehaviour
     private void StartDrawTrail()
     {
         _line.positionCount = 1;
+        _trace.positionCount = 1;
         
         _line.SetPosition(0, new Vector3(player.transform.position.x, trailHeight, player.transform.position.z));
+        _trace.SetPosition(0, new Vector3(player.transform.position.x, trailHeight, player.transform.position.z));
         
         InvokeRepeating(nameof(QueuePosition), 0f, segmentDuration);
         InvokeRepeating(nameof(AddSegment), offset, segmentDuration);
@@ -61,6 +66,11 @@ public class DrawTrail : MonoBehaviour
 
     private void QueuePosition()
     {
-        _positionQueue.Enqueue(new Vector3(player.transform.position.x, trailHeight, player.transform.position.z));
+        var currentPosition = new Vector3(player.transform.position.x, trailHeight, player.transform.position.z);
+        
+        _positionQueue.Enqueue(currentPosition);
+
+        _trace.positionCount += 1;
+        _trace.SetPosition(_trace.positionCount - 1, currentPosition);
     }
 }
