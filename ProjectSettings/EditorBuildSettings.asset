@@ -12,7 +12,10 @@ EditorBuildSettings:
     path: Assets/Scenes/BasicScene.unity
     guid: 26615e3fe53a4498e98a0412b8f36fe6
   m_configObjects:
+    UnityEditor.XR.VisionOS.VisionOSSettings: {fileID: 11400000, guid: 2b7d1d41dd4764bacba8b9e76309a366, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    com.unity.polyspatial.xr.xr_settings: {fileID: 11400000, guid: 64c01c6b3737144b095bbbbcc2696278, type: 2}
+    com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: bd2890fbec8ce4c9ba521b4fd2e8ff9a, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 4879be9fb2d814adab5a84e726ffcb64, type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: b44213ffe192640ae869b446fc23c92b, type: 2}
   m_UseUCBPForAssetBundles: 0
