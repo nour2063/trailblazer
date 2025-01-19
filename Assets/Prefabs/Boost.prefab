@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4371194209663674747}
   - component: {fileID: 4607960776010587955}
+  - component: {fileID: 8002542338971709410}
   m_Layer: 0
   m_Name: Boost
-  m_TagString: Untagged
+  m_TagString: Boost
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,6 +49,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   height: 0.2
   speed: 2
+--- !u!135 &8002542338971709410
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625452540219864080}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.3
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1845743272858596163
 GameObject:
   m_ObjectHideFlags: 0

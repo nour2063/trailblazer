@@ -25,6 +25,11 @@ TagManager:
   - SamplesInfoPanel
   - QDSUIToggleCheckboxRadio
   - QDSUISection
+  - 3Coin
+  - Boost
+  - Coin
+  - Multiplier
+  - TimeBonus
   layers:
   - Default
   - TransparentFX
