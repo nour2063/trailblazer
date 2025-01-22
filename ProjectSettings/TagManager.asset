@@ -30,6 +30,7 @@ TagManager:
   - Coin
   - Multiplier
   - TimeBonus
+  - Trigger
   layers:
   - Default
   - TransparentFX
