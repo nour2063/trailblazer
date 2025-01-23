@@ -6,38 +6,43 @@ using UnityEngine;
 public class Game : MonoBehaviour
 {
     public float delay = 3f;
-    public int score = 0;
     public float timer = 100f;
+    public float multTimer = 10f;
+    
     public GameObject gameScripts;
     public TextMeshProUGUI scoreText;
-    public float multTimer = 10f;
+    public TextMeshProUGUI timerText;
 
+    private int _score = 0;
+    public AudioClip startSound;
     public AudioClip coinSound;
     public AudioClip multSound;
     public AudioClip timeBonusSound;
     public AudioClip boostSound;
 
-    private int mult = 1;
+    private int _mult = 1;
     
     void StartAfterDelay()
     {
         gameScripts.SetActive(true);
+        StartCoroutine(Timer());
     }
     
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Trigger"))
         {
+            GetComponent<AudioSource>().PlayOneShot(startSound);
             Destroy(other.gameObject);
             Invoke(nameof(StartAfterDelay), 3f);
         }
         else if (other.CompareTag("Coin"))
         {
-            UpdateScore(1*mult);
+            UpdateScore(1*_mult);
             Destroy(other.gameObject);
         } else if (other.CompareTag("3Coin"))
         {
-            UpdateScore(3*mult);
+            UpdateScore(3*_mult);
             Destroy(other.gameObject);
         } else if (other.CompareTag("TimeBonus"))
         {
@@ -59,15 +64,26 @@ public class Game : MonoBehaviour
     
     void UpdateScore(int change)
     {
-        score += change * mult;
-        scoreText.text = "" + score;
+        _score += change * _mult;
+        scoreText.text = "" + _score;
         GetComponent<AudioSource>().PlayOneShot(coinSound);
+    }
+
+    IEnumerator Timer()
+    {
+        while (timer > 0)
+        {
+            timerText.text = "" + timer;
+            yield return new WaitForSeconds(1f);
+            timer -= 1;
+        }
+        gameScripts.SetActive(false);
     }
 
     IEnumerator Multiplier()
     {
-        mult = 2;
+        _mult = 2;
         yield return new WaitForSeconds(multTimer);
-        mult = 1;
+        _mult = 1;
     }
 }
