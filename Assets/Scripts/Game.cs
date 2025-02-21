@@ -2,10 +2,11 @@ using System.Collections;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.UI;
 
 public class Game : MonoBehaviour
 {
-    public float delay = 3f;
+    // public float delay = 3f;
     public float timer = 60f;
     public float multTimer = 5f;
     
@@ -21,10 +22,15 @@ public class Game : MonoBehaviour
     public AudioClip timeBonusSound;
     public AudioClip boostSound;
 
+    public Material litGate;
+    public Material startGate;
+    public Material litBase;
+
     private int _mult = 1;
     private bool _gameStarted = false;
+    private int _checkpoints = 0;
     
-    void StartAfterDelay()
+    void StartGame()
     {
         if (_gameStarted) return;
         _gameStarted = true;
@@ -34,12 +40,55 @@ public class Game : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Trigger"))
+        if (other.CompareTag("Gate1"))
         {
             Destroy(other.gameObject);
             GetComponent<AudioSource>().PlayOneShot(startSound);
-            Invoke(nameof(StartAfterDelay), delay);
-        } 
+            Invoke(nameof(StopAudio), 0.75f); 
+            _checkpoints++;
+
+            var gate = GameObject.FindGameObjectWithTag("Gate2");
+            gate.GetComponent<Renderer>().material = litGate;
+            gate.GameObject().transform.Find("Base").GetComponent<Renderer>().material = litBase;
+            gate.GameObject().transform.Find("Icon").GameObject().SetActive(true);
+        }
+        
+        if (other.CompareTag("Gate2") && _checkpoints == 1)
+        {
+            Destroy(other.gameObject);
+            GetComponent<AudioSource>().PlayOneShot(startSound);
+            Invoke(nameof(StopAudio), 0.75f); 
+            _checkpoints++;
+
+            var gate = GameObject.FindGameObjectWithTag("Gate3");
+            gate.GetComponent<Renderer>().material = litGate;
+            gate.GameObject().transform.Find("Base").GetComponent<Renderer>().material = litBase;
+            gate.GameObject().transform.Find("Icon").GameObject().SetActive(true);
+        }
+        
+        if (other.CompareTag("Gate3") && _checkpoints == 2)
+        {
+            Destroy(other.gameObject);
+            GetComponent<AudioSource>().PlayOneShot(startSound);
+            Invoke(nameof(StopAudio), 0.75f); 
+            _checkpoints++;
+
+            var gate = GameObject.FindGameObjectWithTag("Trigger");
+            gate.GetComponent<Renderer>().material = startGate;
+            gate.GameObject().transform.Find("Base").GetComponent<Renderer>().material = litBase;
+            gate.GameObject().transform.Find("Icon").GameObject().SetActive(true);
+        }
+
+        if (other.CompareTag("Trigger") && _checkpoints == 3)
+        {
+            GetComponent<AudioSource>().clip = startSound;
+            GetComponent<AudioSource>().time = 3f; 
+            GetComponent<AudioSource>().Play();
+            
+            Destroy(other.gameObject);
+            // Invoke(nameof(StartGame), delay);
+            StartGame();
+        }
         else if (other.CompareTag("Coin"))
         {
             Destroy(other.gameObject);
@@ -93,5 +142,10 @@ public class Game : MonoBehaviour
         _mult = 2;
         yield return new WaitForSeconds(multTimer);
         _mult = 1;
+    }
+    
+    void StopAudio()
+    {
+        GetComponent<AudioSource>().Stop();
     }
 }

@@ -5,12 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/BasicScene.unity
     guid: 26615e3fe53a4498e98a0412b8f36fe6
   - enabled: 0
     path: "Assets/Samples/Meta XR Interaction \u200BSDK/71.0.0/Example Scenes/UISetExamples.unity"
     guid: 07e3686372a704147b219707ee3c6f62
+  - enabled: 1
+    path: Assets/Scenes/BikeScene.unity
+    guid: 673e5c130324340a98a54c4845aaa84a
   m_configObjects:
     UnityEditor.XR.VisionOS.VisionOSSettings: {fileID: 11400000, guid: 2b7d1d41dd4764bacba8b9e76309a366, type: 2}
     com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000, guid: c971dcdbc6c8f4e81adc9c50abe58cad, type: 2}
