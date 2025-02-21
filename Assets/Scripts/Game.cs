@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Net.Mail;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -8,6 +9,7 @@ using UnityEngine.Rendering.UI;
 public class Game : MonoBehaviour
 {
     // public float delay = 3f;
+    public DrawTrail drawTrail;
     public float timer = 60f;
     public float multTimer = 5f;
     
@@ -17,7 +19,10 @@ public class Game : MonoBehaviour
 
     public int score = 0;
     
-    public AudioClip startSound;
+    public AudioClip startSound1;
+    public AudioClip startSound2;
+    
+    
     public AudioClip coinSound;
     public AudioClip multSound;
     public AudioClip timeBonusSound;
@@ -31,10 +36,13 @@ public class Game : MonoBehaviour
     public Material gateMaterial;
     public Material baseMaterial;
     public Material startGate;
+    public Material failGate;
 
     private int _mult = 1;
     private bool _gameStarted = false;
     private int _checkpoints = 0;
+
+    private float _startTime;
     
     void StartGame()
     {
@@ -48,6 +56,7 @@ public class Game : MonoBehaviour
     {
         if (other.CompareTag("Gate1") && _checkpoints == 0)
         {
+            _startTime = Time.time;
             gate1.GetComponentInChildren<ParticleSystem>().Play();
             other.gameObject.SetActive(false);
             
@@ -67,18 +76,24 @@ public class Game : MonoBehaviour
             gate3.GetComponentInChildren<ParticleSystem>().Play();
             other.gameObject.SetActive(false);
             
-            EnableGate(gate4, final:true);
+            var elapsedTime = Time.time - _startTime;
+            if (elapsedTime is < 2.75f or > 4f)
+            {
+                EnableGate(gate4, speedFault:true);
+            }
+            else
+            {
+                EnableGate(gate4, final:true);
+            }
         }
 
         if (other.CompareTag("Gate4") && _checkpoints == 3)
         {
             gate4.GetComponentInChildren<ParticleSystem>().Play();
-            GetComponent<AudioSource>().clip = startSound;
-            GetComponent<AudioSource>().time = 3f; 
-            GetComponent<AudioSource>().Play();
+            GetComponent<AudioSource>().PlayOneShot(startSound2);
             
             other.gameObject.SetActive(false);
-            StartGame();
+            Invoke(nameof(StartGame), 0);
         }
         else if (other.CompareTag("Coin"))
         {
@@ -115,7 +130,11 @@ public class Game : MonoBehaviour
     {
         score += change * _mult;
         scoreText.text = "" + score;
-        GetComponent<AudioSource>().PlayOneShot(coinSound);
+        for (int i = 0; i < change; i++)
+        {
+            GetComponent<AudioSource>().PlayOneShot(coinSound);
+            drawTrail.segmentTotal += 3;
+        }
     }
 
     IEnumerator Timer()
@@ -135,20 +154,14 @@ public class Game : MonoBehaviour
         yield return new WaitForSeconds(multTimer);
         _mult = 1;
     }
-    
-    void StopAudio()
-    {
-        GetComponent<AudioSource>().Stop();
-    }
 
-    void EnableGate(GameObject g, bool final = false)
+    void EnableGate(GameObject g, bool final = false, bool speedFault = false)
     {
-        GetComponent<AudioSource>().PlayOneShot(startSound);
-        Invoke(nameof(StopAudio), 0.75f); 
+        GetComponent<AudioSource>().PlayOneShot(startSound1);
         _checkpoints++;
         var gate = g.transform.Find("Trigger");
-        gate.GetComponent<Renderer>().material = final ? startGate : gateMaterial;
+        gate.GetComponent<Renderer>().material = final ? startGate : (speedFault ? failGate : gateMaterial);
         gate.transform.Find("Base").GetComponent<Renderer>().material = baseMaterial;
-        gate.transform.Find("Icon").GameObject().SetActive(true);
+        gate.transform.Find(speedFault ? "Icon (X)" : "Icon").GameObject().SetActive(true);
     }
 }

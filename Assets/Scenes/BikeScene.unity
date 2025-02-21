@@ -314,8 +314,9 @@ MonoBehaviour:
   player: {fileID: 1420882748}
   trace: {fileID: 445761735}
   trailHeight: 0.1
-  segmentDuration: 0.25
+  segmentDuration: 0.1
   offset: 2
+  segmentTotal: 50
   damageSound: {fileID: 8300000, guid: 9f3649a649c824bffb49cef45ec443aa, type: 3}
 --- !u!120 &292125755
 LineRenderer:
@@ -1518,13 +1519,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b83ba9cc46b6a4aa2aabb118759edf5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 60
-  multTimer: 5
+  drawTrail: {fileID: 292125754}
+  timer: 100
+  multTimer: 7.5
   gameScripts: {fileID: 599993779}
   scoreText: {fileID: 2081107766}
   timerText: {fileID: 863418846}
   score: 0
-  startSound: {fileID: 8300000, guid: 8910451a9c8bb422ca01633c4ace832f, type: 3}
+  startSound1: {fileID: 8300000, guid: 63ca19d5916134f268506d54605043f3, type: 3}
+  startSound2: {fileID: 8300000, guid: 6e08a86c2740949539dc5d2f6494ed10, type: 3}
   coinSound: {fileID: 8300000, guid: 71f8bc1ca0da14b5bbfcab9de2e83c6d, type: 3}
   multSound: {fileID: 8300000, guid: 2020647ea49ef4ab0ae0e6628c4f1489, type: 3}
   timeBonusSound: {fileID: 8300000, guid: b388d32b5aebe4e29a2d93c13d2c5946, type: 3}
@@ -1536,6 +1539,7 @@ MonoBehaviour:
   gateMaterial: {fileID: 2100000, guid: d1fa9481b383c49d596359ab7e583998, type: 2}
   baseMaterial: {fileID: 2100000, guid: 501738da0140e4fce9e4611934149d3f, type: 2}
   startGate: {fileID: 2100000, guid: 53bd176cdfa8e4d49b1ef13feca87883, type: 2}
+  failGate: {fileID: 2100000, guid: be17ec5e7a8ac4da6a604c7cd2bc7d34, type: 2}
 --- !u!82 &1323473303
 AudioSource:
   m_ObjectHideFlags: 0

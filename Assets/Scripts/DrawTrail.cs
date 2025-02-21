@@ -10,6 +10,7 @@ public class DrawTrail : MonoBehaviour
     public float trailHeight = 0.1f;
     public float segmentDuration = 0.25f;
     public float offset = 2f;
+    public int segmentTotal = 40;
 
     public AudioClip damageSound;
 
@@ -18,6 +19,8 @@ public class DrawTrail : MonoBehaviour
     private readonly Queue<Vector3> _positionQueue = new Queue<Vector3>();
     private MeshCollider _collider;
     private Mesh _mesh;
+
+    private int _segmentCount = 0;
 
     private Game _game;
     
@@ -76,6 +79,11 @@ public class DrawTrail : MonoBehaviour
         
         _line.BakeMesh(_mesh);
         _collider.sharedMesh = _mesh;
+        _segmentCount++;
+
+        if (_segmentCount <= segmentTotal) return;
+        RemoveOldSegment();
+        _segmentCount--;
     }
 
     private void QueuePosition()
@@ -86,5 +94,23 @@ public class DrawTrail : MonoBehaviour
 
         _trace.positionCount += 1;
         _trace.SetPosition(_trace.positionCount - 1, currentPosition);
+    }
+    
+    private void RemoveOldSegment()
+    {
+        if (_line.positionCount <= 1) return;
+
+        for (int i = 1; i < _line.positionCount; i++)
+        {
+            _line.SetPosition(i - 1, _line.GetPosition(i));
+        }
+
+        _line.positionCount--;
+
+        for (int i = 1; i < _trace.positionCount; i++)
+        {
+            _trace.SetPosition(i - 1, _trace.GetPosition(i));
+        }
+        _trace.positionCount--;
     }
 }
