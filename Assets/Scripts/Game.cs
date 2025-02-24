@@ -8,10 +8,14 @@ using UnityEngine.Rendering.UI;
 
 public class Game : MonoBehaviour
 {
-    public float delay = 0f;
+    public float startTimeout = 6f;
+    public float startThreshold = 1.5f;
+    
     public DrawTrail drawTrail;
-    public float timer = 60f;
-    public float multTimer = 5f;
+    public float timer = 80f;
+    public float multTimer = 7.5f;
+    public int trailDelta = 5;
+    public float timeDelta = 7.5f;
     
     public GameObject gameScripts;
     public TextMeshProUGUI scoreText;
@@ -26,7 +30,7 @@ public class Game : MonoBehaviour
     public AudioClip coinSound;
     public AudioClip multSound;
     public AudioClip timeBonusSound;
-    public AudioClip boostSound;
+    // public AudioClip boostSound;
 
     public GameObject gate1;
     public GameObject gate2;
@@ -65,18 +69,20 @@ public class Game : MonoBehaviour
         }
         else if (other.CompareTag("Coin"))
         {
+            _audioSource.PlayOneShot(coinSound);
             Destroy(other.gameObject);
             UpdateScore(1*_mult);
         } 
         else if (other.CompareTag("3Coin"))
         {
+            StartCoroutine(Handle3CoinSound());
             UpdateScore(3*_mult);
             Destroy(other.gameObject);
         } 
         else if (other.CompareTag("TimeBonus"))
         {
             Destroy(other.gameObject);
-            timer += 5;
+            timer += timeDelta;
             GetComponent<AudioSource>().PlayOneShot(timeBonusSound);
         } 
         // todo make boost work for multiplayer
@@ -100,8 +106,7 @@ public class Game : MonoBehaviour
         scoreText.text = "" + score;
         for (int i = 0; i < change; i++)
         {
-            GetComponent<AudioSource>().PlayOneShot(coinSound);
-            drawTrail.segmentTotal += 5;
+            drawTrail.segmentTotal += trailDelta;
         }
     }
 
@@ -148,7 +153,9 @@ public class Game : MonoBehaviour
                 yield return new WaitForSeconds(0.01f);
 
                 var elapsedTime = Time.time - _startTime;
-                gate4 = elapsedTime is < 2f or > 6f ? EnableGate(gate4, speedFault: true) : EnableGate(gate4, final: true);
+                gate4 = (elapsedTime < startThreshold || elapsedTime > startTimeout) 
+                    ? EnableGate(gate4, speedFault: true) 
+                    : EnableGate(gate4, final: true);
                 break;
 
             case 3:
@@ -156,7 +163,7 @@ public class Game : MonoBehaviour
                 _audioSource.PlayOneShot(startSound2);
                 gate.gameObject.SetActive(false);
                 yield return new WaitForSeconds(0.01f);
-                Invoke(nameof(StartGame), delay);
+                StartGame();
                 break;
         }
     }
@@ -172,5 +179,14 @@ public class Game : MonoBehaviour
         
         return Instantiate(final ? finalGate : speedFault ? blockedGate : activeGate, position, rotation);
 
+    }
+
+    private IEnumerator Handle3CoinSound()
+    {
+        _audioSource.PlayOneShot(coinSound);
+        yield return new WaitForSeconds(0.1f);
+        _audioSource.PlayOneShot(coinSound);
+        yield return new WaitForSeconds(0.1f);
+        _audioSource.PlayOneShot(coinSound);
     }
 }
