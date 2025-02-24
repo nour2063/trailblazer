@@ -153,12 +153,14 @@ MonoBehaviour:
   - {fileID: 354547556857757566, guid: eaf266e3024de4bd88298bb6cc1ead36, type: 3}
   - {fileID: 354547556857757566, guid: eaf266e3024de4bd88298bb6cc1ead36, type: 3}
   - {fileID: 354547556857757566, guid: eaf266e3024de4bd88298bb6cc1ead36, type: 3}
+  - {fileID: 354547556857757566, guid: eaf266e3024de4bd88298bb6cc1ead36, type: 3}
+  - {fileID: 354547556857757566, guid: eaf266e3024de4bd88298bb6cc1ead36, type: 3}
   - {fileID: 3069505792593458651, guid: ed4f6c88c67f848d38897d13859f04d9, type: 3}
   - {fileID: 3069505792593458651, guid: ed4f6c88c67f848d38897d13859f04d9, type: 3}
   - {fileID: 666588485384422944, guid: 55c5f06b925bf4141b0fea9c4d2abc89, type: 3}
   - {fileID: 666588485384422944, guid: 55c5f06b925bf4141b0fea9c4d2abc89, type: 3}
   - {fileID: 2587555554550897904, guid: 1cb3716c041294766a5c20ab55289f83, type: 3}
-  spawnInterval: 5
+  spawnInterval: 1.5
 --- !u!114 &31291499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -813,12 +815,12 @@ GameObject:
   - component: {fileID: 589298191}
   - component: {fileID: 589298190}
   m_Layer: 0
-  m_Name: SpawnCoins
+  m_Name: SpawnCoinsAtStart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &589298190
 MonoBehaviour:
   m_ObjectHideFlags: 0

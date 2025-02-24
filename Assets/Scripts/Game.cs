@@ -148,7 +148,7 @@ public class Game : MonoBehaviour
                 yield return new WaitForSeconds(0.01f);
 
                 var elapsedTime = Time.time - _startTime;
-                gate4 = elapsedTime is < 2.75f or > 4f ? EnableGate(gate4, speedFault: true) : EnableGate(gate4, final: true);
+                gate4 = elapsedTime is < 2f or > 6f ? EnableGate(gate4, speedFault: true) : EnableGate(gate4, final: true);
                 break;
 
             case 3:

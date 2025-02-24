@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Multiplier : MonoBehaviour
+public class BouncePickUp : MonoBehaviour
 {
     public float height = 0.3f;
     public float speed = 1f;
