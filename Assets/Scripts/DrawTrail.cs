@@ -7,6 +7,7 @@ public class DrawTrail : MonoBehaviour
 {
     public GameObject player;
     public GameObject trace;
+    public GameObject outline;
     public float trailHeight = 0.1f;
     public float segmentDuration = 0.25f;
     public float offset = 2f;
@@ -16,6 +17,7 @@ public class DrawTrail : MonoBehaviour
 
     private LineRenderer _line;
     private LineRenderer _trace;
+    private LineRenderer _outline;
     private readonly Queue<Vector3> _positionQueue = new Queue<Vector3>();
     private MeshCollider _collider;
     private Mesh _mesh;
@@ -29,6 +31,7 @@ public class DrawTrail : MonoBehaviour
         _game = FindAnyObjectByType<Game>();
         
         _line = GetComponent<LineRenderer>();
+        _outline = outline.GetComponent<LineRenderer>();
         _trace = trace.GetComponent<LineRenderer>();
         
         _collider = gameObject.AddComponent<MeshCollider>();
@@ -62,9 +65,11 @@ public class DrawTrail : MonoBehaviour
     {
         _line.positionCount = 1;
         _trace.positionCount = 1;
+        _outline.positionCount = 1;
         
         _line.SetPosition(0, new Vector3(player.transform.position.x, trailHeight, player.transform.position.z));
         _trace.SetPosition(0, new Vector3(player.transform.position.x, trailHeight, player.transform.position.z));
+        _outline.SetPosition(0, new Vector3(player.transform.position.x, trailHeight, player.transform.position.z));
         
         InvokeRepeating(nameof(QueuePosition), 0f, segmentDuration);
         InvokeRepeating(nameof(AddSegment), offset, segmentDuration);
@@ -75,7 +80,11 @@ public class DrawTrail : MonoBehaviour
         if (_positionQueue.Count == 0) return;
 
         _line.positionCount += 1;
-        _line.SetPosition(_line.positionCount - 1, _positionQueue.Dequeue());
+        _outline.positionCount += 1;
+        
+        var position = _positionQueue.Dequeue();
+        _line.SetPosition(_line.positionCount - 1, position);
+        _outline.SetPosition(_outline.positionCount - 1, position);
         
         _line.BakeMesh(_mesh);
         _collider.sharedMesh = _mesh;
@@ -103,9 +112,11 @@ public class DrawTrail : MonoBehaviour
         for (int i = 1; i < _line.positionCount; i++)
         {
             _line.SetPosition(i - 1, _line.GetPosition(i));
+            _outline.SetPosition(i - 1, _outline.GetPosition(i));
         }
 
         _line.positionCount--;
+        _outline.positionCount--;
 
         for (int i = 1; i < _trace.positionCount; i++)
         {
