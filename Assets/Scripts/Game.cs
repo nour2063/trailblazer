@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AdaptivePerformance.VisualScripting;
 using UnityEngine.Rendering.UI;
+using UnityEngine.Rendering.Universal;
 
 public class Game : MonoBehaviour
 {
@@ -40,6 +41,9 @@ public class Game : MonoBehaviour
     public GameObject activeGate;
     public GameObject blockedGate;
     public GameObject finalGate;
+    
+    public VignetteController vignette;
+    public VignetteController vignette2;
 
     private int _mult = 1;
     private bool _gameStarted = false;
@@ -51,6 +55,7 @@ public class Game : MonoBehaviour
     void Start()
     {
         _audioSource = GetComponent<AudioSource>();
+        
     }
     
     void StartGame()
@@ -59,6 +64,11 @@ public class Game : MonoBehaviour
         _gameStarted = true;
         gameScripts.SetActive(true);
         StartCoroutine(Timer());
+        
+        vignette.SetColor(Color.cyan, 2f);
+        vignette2.SetColor(Color.cyan, 2f);
+        vignette.SetIntensity(0.3f, 2f);
+        vignette2.SetIntensity(0.3f, 2f);
     }
     
     private void OnTriggerEnter(Collider other)
