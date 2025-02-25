@@ -384,10 +384,14 @@ MonoBehaviour:
   player: {fileID: 1420882748}
   trace: {fileID: 445761735}
   outline: {fileID: 1608918535}
+  vignette: {fileID: 973350458}
   trailHeight: 0.1
   segmentDuration: 0.1
   offset: 2
   segmentTotal: 50
+  vignetteMaxIntensity: 0.5
+  vignetteMinIntensity: 0.1
+  vignetteDistanceThreshold: 5
   damageSound: {fileID: 8300000, guid: 9f3649a649c824bffb49cef45ec443aa, type: 3}
 --- !u!120 &292125755
 LineRenderer:
