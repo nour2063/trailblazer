@@ -285,6 +285,18 @@ PrefabInstance:
       value: Gate (2)
       objectReference: {fileID: 0}
     - target: {fileID: 7072457803760952743, guid: ecd3be46bf50a4baf93476aa1dd24073, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7072457803760952743, guid: ecd3be46bf50a4baf93476aa1dd24073, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7072457803760952743, guid: ecd3be46bf50a4baf93476aa1dd24073, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7072457803760952743, guid: ecd3be46bf50a4baf93476aa1dd24073, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -388,10 +400,10 @@ MonoBehaviour:
   trailHeight: 0.1
   segmentDuration: 0.1
   offset: 2
-  segmentTotal: 50
-  vignetteMaxIntensity: 0.5
+  segmentTotal: 150
+  vignetteMaxIntensity: 0.7
   vignetteMinIntensity: 0.1
-  vignetteDistanceThreshold: 5
+  vignetteDistanceThreshold: 10
   damageSound: {fileID: 8300000, guid: 9f3649a649c824bffb49cef45ec443aa, type: 3}
 --- !u!120 &292125755
 LineRenderer:
@@ -447,7 +459,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.044787556
+        value: 0.1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -552,6 +564,18 @@ PrefabInstance:
       value: Gate (3)
       objectReference: {fileID: 0}
     - target: {fileID: 7072457803760952743, guid: ecd3be46bf50a4baf93476aa1dd24073, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7072457803760952743, guid: ecd3be46bf50a4baf93476aa1dd24073, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7072457803760952743, guid: ecd3be46bf50a4baf93476aa1dd24073, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7072457803760952743, guid: ecd3be46bf50a4baf93476aa1dd24073, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -622,8 +646,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 717856733}
   - {fileID: 1384736538}
@@ -702,7 +726,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.024934962
+        value: 0.07
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -1271,7 +1295,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 60
+  m_text: 80
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
@@ -1476,6 +1500,18 @@ PrefabInstance:
       value: Gate (1)
       objectReference: {fileID: 0}
     - target: {fileID: 7072457803760952743, guid: ecd3be46bf50a4baf93476aa1dd24073, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7072457803760952743, guid: ecd3be46bf50a4baf93476aa1dd24073, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7072457803760952743, guid: ecd3be46bf50a4baf93476aa1dd24073, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7072457803760952743, guid: ecd3be46bf50a4baf93476aa1dd24073, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -1651,8 +1687,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 3, z: 0.1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.3, y: 9, z: 0.3}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1713,8 +1749,8 @@ MonoBehaviour:
   drawTrail: {fileID: 292125754}
   timer: 80
   multTimer: 7.5
-  trailDelta: 5
-  timeDelta: 7.5
+  trailDelta: 10
+  timeDelta: 5
   gameScripts: {fileID: 599993779}
   scoreText: {fileID: 2081107766}
   timerText: {fileID: 863418846}
@@ -2469,7 +2505,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   userCamera: {fileID: 1420882758}
-  offset: {x: 0, y: 0.1, z: 1}
+  offset: {x: 0, y: 0.1, z: 2}
   smoothTime: 0.3
 --- !u!114 &1589517212
 MonoBehaviour:
@@ -2641,7 +2677,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.08523649
+        value: 0.2
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -2961,6 +2997,18 @@ PrefabInstance:
       value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7072457803760952743, guid: 57f116a8ba869427c8a7c26f68ed1e95, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7072457803760952743, guid: 57f116a8ba869427c8a7c26f68ed1e95, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7072457803760952743, guid: 57f116a8ba869427c8a7c26f68ed1e95, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7072457803760952743, guid: 57f116a8ba869427c8a7c26f68ed1e95, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -2999,6 +3047,10 @@ PrefabInstance:
     - target: {fileID: 7072457803760952743, guid: 57f116a8ba869427c8a7c26f68ed1e95, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7072457803760952743, guid: 57f116a8ba869427c8a7c26f68ed1e95, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
