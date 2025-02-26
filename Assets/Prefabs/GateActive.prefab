@@ -352,7 +352,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 74078499623404260, guid: 9790383d97594f049aecba8cf470e3b7, type: 3}
       propertyPath: playOnAwake
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 74078499623404260, guid: 9790383d97594f049aecba8cf470e3b7, type: 3}
       propertyPath: scalingMode
@@ -398,6 +398,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 74078499623404261, guid: 9790383d97594f049aecba8cf470e3b7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 67617180a3b1548edaf3649481737f34, type: 2}
     - target: {fileID: 74078499623404261, guid: 9790383d97594f049aecba8cf470e3b7, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 

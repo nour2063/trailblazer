@@ -21,6 +21,7 @@ public class Game : MonoBehaviour
     public GameObject gameScripts;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI timerText;
+    public GameObject showMultiplier;
 
     public int score = 0;
     
@@ -43,7 +44,6 @@ public class Game : MonoBehaviour
     public GameObject finalGate;
     
     public VignetteController vignette;
-    public VignetteController vignette2;
 
     private int _mult = 1;
     private bool _gameStarted = false;
@@ -57,12 +57,11 @@ public class Game : MonoBehaviour
     private readonly Color _3CoinColor = new Color(0.9f, 0.6f, 0.3f);
     private readonly Color _timeBonusColor = new Color(0.2f, 0.4f, 0.9f);
     private readonly Color _multiplierColor = new Color(0.4f, 0.9f, 0.4f);
-    private const float VignetteIntensity = 0.3f;
+    private const float VignetteIntensity = 0.35f;
 
     void Start()
     {
         _audioSource = GetComponent<AudioSource>();
-        
     }
     
     void StartGame()
@@ -71,17 +70,13 @@ public class Game : MonoBehaviour
         _gameStarted = true;
         gameScripts.SetActive(true);
         StartCoroutine(Timer());
-        
-        vignette.SetColor(_defaultColor, 2f);
-        vignette2.SetColor(_defaultColor, 2f);
-        vignette.SetIntensity(VignetteIntensity, 2f);
-        vignette2.SetIntensity(VignetteIntensity, 2f);
     }
     
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Gate"))
         {
+            StartCoroutine(SetVignette(_defaultColor));
             StartCoroutine(HandleCheckpoint(other));
         }
         else if (other.CompareTag("Coin"))
@@ -117,10 +112,8 @@ public class Game : MonoBehaviour
         // } 
         else if (other.CompareTag("Multiplier"))
         {
-            StartCoroutine(SetVignette(_multiplierColor));
-            
+            _audioSource.PlayOneShot(multSound);
             Destroy(other.gameObject);
-            GetComponent<AudioSource>().PlayOneShot(multSound);
             StartCoroutine(Multiplier());
         }
     }
@@ -149,7 +142,14 @@ public class Game : MonoBehaviour
     IEnumerator Multiplier()
     {
         _mult = 2;
+        showMultiplier.SetActive(true);
+        for (int i = 0; i < multTimer*2; i++)
+        {
+            StartCoroutine(SetVignette(_multiplierColor));
+            yield return new WaitForSeconds(0.5f);
+        }
         yield return new WaitForSeconds(multTimer);
+        showMultiplier.SetActive(false);
         _mult = 1;
     }
     
@@ -203,7 +203,6 @@ public class Game : MonoBehaviour
         Destroy(g);
         
         return Instantiate(final ? finalGate : speedFault ? blockedGate : activeGate, position, rotation);
-
     }
 
     private IEnumerator Handle3CoinSound()
@@ -218,11 +217,9 @@ public class Game : MonoBehaviour
     private IEnumerator SetVignette(Color color)
     {
         vignette.SetColor(color, 0.2f);
-        vignette2.SetColor(color, 0.2f);
-        
+        vignette.SetIntensity(0.45f, 0.2f);
         yield return new WaitForSeconds(0.2f);
-        
         vignette.SetColor(_defaultColor, 0.2f);
-        vignette2.SetColor(_defaultColor, 0.2f);
+        vignette.SetIntensity(VignetteIntensity, 0.2f);
     }
 }
