@@ -444,7 +444,7 @@ MonoBehaviour:
   vignetteMaxIntensity: 0.7
   vignetteMinIntensity: 0.1
   vignetteDistanceThreshold: 10
-  damageSound: {fileID: 8300000, guid: 9f3649a649c824bffb49cef45ec443aa, type: 3}
+  damageSound: {fileID: 8300000, guid: c12ca8f6e689149819e5ee3a8397eb17, type: 3}
 --- !u!120 &292125755
 LineRenderer:
   serializedVersion: 2
@@ -2384,8 +2384,10 @@ MonoBehaviour:
   startSound1: {fileID: 8300000, guid: 63ca19d5916134f268506d54605043f3, type: 3}
   startSound2: {fileID: 8300000, guid: 6e08a86c2740949539dc5d2f6494ed10, type: 3}
   coinSound: {fileID: 8300000, guid: 71f8bc1ca0da14b5bbfcab9de2e83c6d, type: 3}
-  multSound: {fileID: 8300000, guid: 2020647ea49ef4ab0ae0e6628c4f1489, type: 3}
+  multSound: {fileID: 8300000, guid: 62952af05fddb46629923f518f8d3602, type: 3}
+  multEndSound: {fileID: 8300000, guid: 2e892c98b7af54f679f22a06124530f0, type: 3}
   timeBonusSound: {fileID: 8300000, guid: b388d32b5aebe4e29a2d93c13d2c5946, type: 3}
+  errorSound: {fileID: 8300000, guid: b318195f1a92345cfabbc265a76932d4, type: 3}
   gate1: {fileID: 717856732}
   gate2: {fileID: 1384736537}
   gate3: {fileID: 1285986972}

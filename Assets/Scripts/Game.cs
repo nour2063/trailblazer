@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Net.Mail;
 using TMPro;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AdaptivePerformance.VisualScripting;
@@ -32,7 +33,9 @@ public class Game : MonoBehaviour
     
     public AudioClip coinSound;
     public AudioClip multSound;
+    public AudioClip multEndSound;
     public AudioClip timeBonusSound;
+    public AudioClip errorSound;
     // public AudioClip boostSound;
 
     public GameObject gate1;
@@ -86,9 +89,8 @@ public class Game : MonoBehaviour
         }
         else if (other.CompareTag("DenyGate"))
         {
+            _audioSource.PlayOneShot(errorSound);
             Destroy(other.gameObject);
-            tryAgainText.SetActive(true);
-            startingArea.SetActive(true);
         }
         else if (other.CompareTag("StartingArea"))
         {
@@ -116,7 +118,7 @@ public class Game : MonoBehaviour
             
             Destroy(other.gameObject);
             timer += timeDelta;
-            GetComponent<AudioSource>().PlayOneShot(timeBonusSound);
+            _audioSource.PlayOneShot(timeBonusSound);
         } 
         // todo make boost work for multiplayer
         // else if (other.CompareTag("Boost"))
@@ -127,7 +129,6 @@ public class Game : MonoBehaviour
         // } 
         else if (other.CompareTag("Multiplier"))
         {
-            _audioSource.PlayOneShot(multSound);
             Destroy(other.gameObject);
             StartCoroutine(Multiplier());
         }
@@ -157,13 +158,16 @@ public class Game : MonoBehaviour
 
     IEnumerator Multiplier()
     {
+        _audioSource.PlayOneShot(multSound);
         _mult = 2;
         showMultiplier.SetActive(true);
-        for (int i = 0; i < multTimer*2; i++)
+        for (int i = 1; i < multTimer; i++)
         {
             StartCoroutine(SetVignette(_multiplierColor));
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1f);
         }
+        yield return new WaitForSeconds(multTimer - math.floor(multTimer));
+        _audioSource.PlayOneShot(multEndSound);
         showMultiplier.SetActive(false);
         _mult = 1;
     }
@@ -193,9 +197,16 @@ public class Game : MonoBehaviour
                 yield return new WaitForSeconds(0.01f);
 
                 var elapsedTime = Time.time - _startTime;
-                gate4 = (elapsedTime < startThreshold || elapsedTime > startTimeout) 
-                    ? EnableGate(gate4, speedFault: true)
-                    : EnableGate(gate4, final: true);
+                if (elapsedTime < startThreshold || elapsedTime > startTimeout)
+                {
+                    tryAgainText.SetActive(true);
+                    startingArea.SetActive(true);
+                    EnableGate(gate4, speedFault: true);
+                }
+                else
+                {
+                    EnableGate(gate4, final: true);
+                }
                 break;
 
             case 3:
@@ -231,10 +242,9 @@ public class Game : MonoBehaviour
 
     private IEnumerator SetVignette(Color color)
     {
-        vignette.SetColor(color, 0.2f);
-        vignette.SetIntensity(0.45f, 0.2f);
-        yield return new WaitForSeconds(0.2f);
-        vignette.SetColor(_defaultColor, 0.2f);
-        vignette.SetIntensity(VignetteIntensity, 0.2f);
+        vignette.SetColor(color, 0.25f);
+        vignette.SetIntensity(VignetteIntensity, 0.25f);
+        yield return new WaitForSeconds(0.5f);
+        vignette.SetIntensity(0, 0.5f);
     }
 }
