@@ -154,6 +154,8 @@ public class Game : MonoBehaviour
         gameScripts.SetActive(false);
         playAgainText.SetActive(true);
         startingArea.SetActive(true);
+        
+        drawTrail.vignette.SetIntensity(0f, 0.4f);
     }
 
     IEnumerator Multiplier()
