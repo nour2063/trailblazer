@@ -158,9 +158,9 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BottomColor: {r: 0.29999998, g: 0.29999998, b: 1, a: 1}
     - _Color: {r: 0, g: 0, b: 0, a: 1}
-    - _Color0: {r: 1, g: 0, b: 0, a: 1}
-    - _Color1: {r: 1, g: 0, b: 0, a: 1}
-    - _Color2: {r: 1, g: 0, b: 0, a: 1}
+    - _Color0: {r: 0, g: 0.6862745, b: 0.6862745, a: 1}
+    - _Color1: {r: 0, g: 0.6862745, b: 0.6862745, a: 1}
+    - _Color2: {r: 0, g: 0.6862745, b: 0.6862745, a: 1}
     - _Direction: {r: 0, g: 1, b: 0, a: 1}
     - _GradientPosition0: {r: 0.15, g: 0.5, b: 0, a: 1}
     - _GradientPosition1: {r: 0.85, g: 0.5, b: 0, a: 1}

@@ -57,7 +57,7 @@ public class Game : MonoBehaviour
     private readonly Color _3CoinColor = new Color(0.9f, 0.6f, 0.3f);
     private readonly Color _timeBonusColor = new Color(0.2f, 0.4f, 0.9f);
     private readonly Color _multiplierColor = new Color(0.4f, 0.9f, 0.4f);
-    private const float VignetteIntensity = 0.35f;
+    private const float VignetteIntensity = 0.4f;
 
     void Start()
     {
@@ -148,7 +148,6 @@ public class Game : MonoBehaviour
             StartCoroutine(SetVignette(_multiplierColor));
             yield return new WaitForSeconds(0.5f);
         }
-        yield return new WaitForSeconds(multTimer);
         showMultiplier.SetActive(false);
         _mult = 1;
     }
