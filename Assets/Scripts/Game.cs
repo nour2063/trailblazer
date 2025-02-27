@@ -90,7 +90,7 @@ public class Game : MonoBehaviour
         else if (other.CompareTag("DenyGate"))
         {
             _audioSource.PlayOneShot(errorSound);
-            Destroy(other.gameObject);
+            other.gameObject.SetActive(false);
         }
         else if (other.CompareTag("StartingArea"))
         {
@@ -201,11 +201,11 @@ public class Game : MonoBehaviour
                 {
                     tryAgainText.SetActive(true);
                     startingArea.SetActive(true);
-                    EnableGate(gate4, speedFault: true);
+                    gate4 = EnableGate(gate4, speedFault: true);
                 }
                 else
                 {
-                    EnableGate(gate4, final: true);
+                    gate4 = EnableGate(gate4, final: true);
                 }
                 break;
 
@@ -240,10 +240,10 @@ public class Game : MonoBehaviour
         _audioSource.PlayOneShot(coinSound);
     }
 
-    private IEnumerator SetVignette(Color color)
+    public IEnumerator SetVignette(Color color, float intensity = VignetteIntensity)
     {
         vignette.SetColor(color, 0.25f);
-        vignette.SetIntensity(VignetteIntensity, 0.25f);
+        vignette.SetIntensity(intensity, 0.25f);
         yield return new WaitForSeconds(0.5f);
         vignette.SetIntensity(0, 0.5f);
     }

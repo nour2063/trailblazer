@@ -440,11 +440,13 @@ MonoBehaviour:
   trailHeight: 0.1
   segmentDuration: 0.1
   offset: 2
+  grace: 2
+  minimumLineLength: 150
   segmentTotal: 150
   vignetteMaxIntensity: 0.7
   vignetteMinIntensity: 0.1
   vignetteDistanceThreshold: 10
-  damageSound: {fileID: 8300000, guid: c12ca8f6e689149819e5ee3a8397eb17, type: 3}
+  damageSound: {fileID: 8300000, guid: 96f516050052146d4be0de45b4462db6, type: 3}
 --- !u!120 &292125755
 LineRenderer:
   serializedVersion: 2

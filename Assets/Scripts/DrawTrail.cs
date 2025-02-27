@@ -12,7 +12,9 @@ public class DrawTrail : MonoBehaviour
     public float trailHeight = 0.1f;
     public float segmentDuration = 0.25f;
     public float offset = 2f;
-    public int segmentTotal = 40;
+    public float grace = 2f; 
+    public int minimumLineLength = 150;
+    public int segmentTotal;
 
     public float vignetteMaxIntensity = 0.5f; 
     public float vignetteMinIntensity = 0.1f;
@@ -37,6 +39,8 @@ public class DrawTrail : MonoBehaviour
         _line = GetComponent<LineRenderer>();
         _outline = outline.GetComponent<LineRenderer>();
         _trace = trace.GetComponent<LineRenderer>();
+        
+        segmentTotal = minimumLineLength;
 
         _collider = gameObject.AddComponent<MeshCollider>();
         _mesh = new Mesh();
@@ -77,19 +81,27 @@ public class DrawTrail : MonoBehaviour
 
         _positionQueue.Clear();
         CancelInvoke();
+        
+        _line.positionCount = 0;
+        _outline.positionCount = 0;
+        _trace.positionCount = 0;
+        segmentTotal = minimumLineLength;
 
-        if (_game.score < 10)
+        if (_game.score < 20)
         {
             _game.score = 0;
         }
         else
         {
-            _game.score -= 10;
+            _game.score -= 20;
         }
+        
         _game.scoreText.text = "" + _game.score;
         _game.GetComponent<AudioSource>().PlayOneShot(damageSound);
+        
+        StartCoroutine(_game.SetVignette(Color.red, 0.75f));
 
-        StartDrawTrail();
+        Invoke(nameof(StartDrawTrail), grace);
     }
 
     private void StartDrawTrail()
