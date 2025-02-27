@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 6827735443351856419}
   m_Layer: 0
   m_Name: Trigger
-  m_TagString: Untagged
+  m_TagString: DenyGate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

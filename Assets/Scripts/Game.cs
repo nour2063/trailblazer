@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.AdaptivePerformance.VisualScripting;
 using UnityEngine.Rendering.UI;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour
 {
@@ -45,6 +46,10 @@ public class Game : MonoBehaviour
     
     public VignetteController vignette;
 
+    public GameObject tryAgainText;
+    public GameObject playAgainText;
+    public GameObject startingArea;
+
     private int _mult = 1;
     private bool _gameStarted = false;
     private int _checkpoints = 0;
@@ -78,6 +83,16 @@ public class Game : MonoBehaviour
         {
             StartCoroutine(SetVignette(_defaultColor));
             StartCoroutine(HandleCheckpoint(other));
+        }
+        else if (other.CompareTag("DenyGate"))
+        {
+            Destroy(other.gameObject);
+            tryAgainText.SetActive(true);
+            startingArea.SetActive(true);
+        }
+        else if (other.CompareTag("StartingArea"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
         else if (other.CompareTag("Coin"))
         {
@@ -117,7 +132,6 @@ public class Game : MonoBehaviour
             StartCoroutine(Multiplier());
         }
     }
-    
     void UpdateScore(int change)
     {
         score += change * _mult;
@@ -137,6 +151,8 @@ public class Game : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }
         gameScripts.SetActive(false);
+        playAgainText.SetActive(true);
+        startingArea.SetActive(true);
     }
 
     IEnumerator Multiplier()
@@ -178,7 +194,7 @@ public class Game : MonoBehaviour
 
                 var elapsedTime = Time.time - _startTime;
                 gate4 = (elapsedTime < startThreshold || elapsedTime > startTimeout) 
-                    ? EnableGate(gate4, speedFault: true) 
+                    ? EnableGate(gate4, speedFault: true)
                     : EnableGate(gate4, final: true);
                 break;
 

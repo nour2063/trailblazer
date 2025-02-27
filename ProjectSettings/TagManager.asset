@@ -36,6 +36,8 @@ TagManager:
   - Gate2
   - Gate3
   - Gate4
+  - DenyGate
+  - StartingArea
   layers:
   - Default
   - TransparentFX
