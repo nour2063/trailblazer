@@ -9,13 +9,13 @@ public class SpawnPowerUps : MonoBehaviour
     
     private FindSpawnPositions _spawn;
     
-    void Start()
+    private void Start()
     {
         _spawn = GetComponent<FindSpawnPositions>();
         InvokeRepeating(nameof(SpawnObject), 0f, spawnInterval);
     }
     
-    void SpawnObject()
+    private void SpawnObject()
     {
         _spawn.SpawnObject = powerUps[Random.Range(0, powerUps.Length)];
         _spawn.StartSpawn();

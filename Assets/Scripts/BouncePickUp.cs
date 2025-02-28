@@ -7,14 +7,14 @@ public class BouncePickUp : MonoBehaviour
 
     private Vector3 _startPosition;
 
-    void Start()
+    private void Start()
     {
         _startPosition = transform.position;
     }
 
-    void Update()
+    private void Update()
     {
-        float newY = _startPosition.y + Mathf.Sin(Time.time * speed) * height;
+        var newY = _startPosition.y + Mathf.Sin(Time.time * speed) * height;
         transform.position = new Vector3(_startPosition.x, newY, _startPosition.z);
     }
 }

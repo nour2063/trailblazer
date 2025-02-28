@@ -58,10 +58,10 @@ public class DrawTrail : MonoBehaviour
         if (_line.positionCount == 0) return;
 
         // Find the closest point on the trail
-        float closestDistance = float.MaxValue;
-        for (int i = 0; i < _line.positionCount; i++)
+        var closestDistance = float.MaxValue;
+        for (var i = 0; i < _line.positionCount; i++)
         {
-            float distance = Vector3.Distance(player.transform.position, _line.GetPosition(i));
+            var distance = Vector3.Distance(player.transform.position, _line.GetPosition(i));
             if (distance < closestDistance)
             {
                 closestDistance = distance;
@@ -69,8 +69,8 @@ public class DrawTrail : MonoBehaviour
         }
 
         // Normalize intensity based on distance
-        float intensity = Mathf.Clamp01(1 - (closestDistance / vignetteDistanceThreshold));
-        float vignetteValue = Mathf.Lerp(vignetteMinIntensity, vignetteMaxIntensity, intensity);
+        var intensity = Mathf.Clamp01(1 - (closestDistance / vignetteDistanceThreshold));
+        var vignetteValue = Mathf.Lerp(vignetteMinIntensity, vignetteMaxIntensity, intensity);
 
         vignette.SetIntensity(vignetteValue, 0.1f); 
     }
@@ -152,7 +152,7 @@ public class DrawTrail : MonoBehaviour
     {
         if (_line.positionCount <= 1) return;
 
-        for (int i = 1; i < _line.positionCount; i++)
+        for (var i = 1; i < _line.positionCount; i++)
         {
             _line.SetPosition(i - 1, _line.GetPosition(i));
             _outline.SetPosition(i - 1, _outline.GetPosition(i));
@@ -161,7 +161,7 @@ public class DrawTrail : MonoBehaviour
         _line.positionCount--;
         _outline.positionCount--;
 
-        for (int i = 1; i < _trace.positionCount; i++)
+        for (var i = 1; i < _trace.positionCount; i++)
         {
             _trace.SetPosition(i - 1, _trace.GetPosition(i));
         }

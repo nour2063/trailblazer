@@ -67,12 +67,12 @@ public class Game : MonoBehaviour
     private readonly Color _multiplierColor = new Color(0.4f, 0.9f, 0.4f);
     private const float VignetteIntensity = 0.4f;
 
-    void Start()
+    private void Start()
     {
         _audioSource = GetComponent<AudioSource>();
     }
     
-    void StartGame()
+    private void StartGame()
     {
         if (_gameStarted) return;
         _gameStarted = true;
@@ -133,7 +133,7 @@ public class Game : MonoBehaviour
             StartCoroutine(Multiplier());
         }
     }
-    void UpdateScore(int change)
+    private void UpdateScore(int change)
     {
         score += change * _mult;
         scoreText.text = "" + score;
@@ -143,7 +143,7 @@ public class Game : MonoBehaviour
         }
     }
 
-    IEnumerator Timer()
+    private IEnumerator Timer()
     {
         while (timer > 0)
         {
@@ -158,7 +158,7 @@ public class Game : MonoBehaviour
         drawTrail.vignette.SetIntensity(0f, 0.4f);
     }
 
-    IEnumerator Multiplier()
+    private IEnumerator Multiplier()
     {
         _audioSource.PlayOneShot(multSound);
         _mult = 2;
@@ -221,7 +221,7 @@ public class Game : MonoBehaviour
         }
     }
 
-    GameObject EnableGate(GameObject g, bool final = false, bool speedFault = false)
+    private GameObject EnableGate(GameObject g, bool final = false, bool speedFault = false)
     {
         _audioSource.PlayOneShot(startSound1);
         _checkpoints++;
