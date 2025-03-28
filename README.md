@@ -31,6 +31,6 @@ git clone https://github.com/nour2063/trailblazer.git
 <img width="589" alt="image" src="https://github.com/user-attachments/assets/c15e8f8d-0c6d-4010-8f9f-14cce45e5eec" />
 <br><br>
 
-7. Load BikeScene.unity
+6. Load BikeScene.unity
 
 <img width="1279" alt="image" src="https://github.com/user-attachments/assets/0e617369-41f2-44ec-854d-fea14aab0dbd" />
