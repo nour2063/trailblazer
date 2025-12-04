@@ -34,3 +34,8 @@ git clone https://github.com/nour2063/trailblazer.git
 6. Load BikeScene.unity
 
 <img width="1279" alt="image" src="https://github.com/user-attachments/assets/0e617369-41f2-44ec-854d-fea14aab0dbd" />
+
+> [!IMPORTANT]
+> - This game is a conceptual demo.
+> - Since large outdoor experiences are not supported by Quest 3, here is a workaround to disable the boundary:
+> - launch app with spatial features enabled, then disable spatial features with the app already opened.
