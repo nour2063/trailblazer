@@ -38,4 +38,7 @@ git clone https://github.com/nour2063/trailblazer.git
 > [!IMPORTANT]
 > - This game is a conceptual demo.
 > - Since large outdoor experiences are not supported by Quest 3, here is a workaround to disable the boundary:
-> - launch app with spatial features enabled, then disable spatial features with the app already opened.
+> 1. Launch app with spatial features enabled
+> 2. Draw a very large boundary in a wide open space
+> 3. Disable spatial features with the app already opened
+> - You can find spatial features on device developer options
